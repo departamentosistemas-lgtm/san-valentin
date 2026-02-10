@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>San Valentin A&B</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  height:100vh;
+  background: radial-gradient(circle at top, #ffe0ef, #fff);
+  font-family: Arial, sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* Tarjeta */
+.card{
+  background:white;
+  padding:32px 30px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.2);
+  z-index:2;
+}
+
+h2{
+  margin-bottom:20px;
+  color:#c9186a;
+}
+
+/* Botones */
+.buttons{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+}
+
+button{
+  padding:12px 28px;
+  font-size:18px;
+  border:none;
+  border-radius:24px;
+  cursor:pointer;
+}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  background:#b9b9b9;
+}
+
+button:hover{
+  filter:brightness(.95);
+}
+
+/* Corazones */
+.petal{
+  position:absolute;
+  top:-10vh;
+  font-size:90px;
+  animation: fall linear infinite;
+  pointer-events:none;
+}
+
+.petal span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:18px;
+  font-weight:bold;
+  color:white;
+  text-shadow:0 0 6px rgba(0,0,0,.7);
+}
+
+@keyframes fall{
+  to{
+    transform: translateY(120vh) rotate(360deg);
+  }
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h2>&iquest;Quieres ser mi San Valentin?</h2>
+
+  <div class="buttons">
+    <button id="yes" onclick="yes()">Si</button>
+    <button id="no" onclick="nope()">No</button>
+  </div>
+</div>
+
+<script>
+function nope(){
+  document.getElementById("no").classList.add("hidden");
+  document.querySelector("h2").innerHTML="Ya sabia que dirias que si";
+}
+
+function yes(){
+  document.getElementById("card").remove();
+
+  for(let i=0;i<140;i++){
+    setTimeout(spawn, i*25);
+  }
+}
+
+function spawn(){
+  const e=document.createElement("div");
+  e.className="petal";
+
+  const heart=document.createElement("div");
+  heart.innerHTML="&#10084;&#65039;";
+
+  const text=document.createElement("span");
+  text.innerHTML="A&amp;B";
+
+  e.appendChild(heart);
+  e.appendChild(text);
+
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=(5+Math.random()*5)+"s";
+
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),10000);
+}
+</script>
+
+</body>
+</html>
