@@ -1,74 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>San Valentin A&B</title>
+<title>💐 Sorpresa</title>
 
 <style>
-*{
-  box-sizing:border-box;
+body {
+    background: linear-gradient(#ffd6e8, #fff);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 40px;
+    overflow: hidden;
 }
 
-body{
-  margin:0;
-  height:100vh;
-  background: radial-gradient(circle at top, #ffe0ef, #fff);
-  font-family: Arial, sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+h1 {
+    color: #d63384;
 }
 
-/* Tarjeta */
-.card{
-  background:white;
-  padding:32px 30px;
-  border-radius:24px;
-  text-align:center;
-  box-shadow:0 15px 35px rgba(0,0,0,.2);
-  z-index:2;
-}
-
-h2{
-  margin-bottom:20px;
-  color:#c9186a;
-}
-
-/* Botones */
-.buttons{
-  display:flex;
-  gap:18px;
-  justify-content:center;
+p {
+    font-size: 18px;
 }
 
 button{
-  padding:12px 28px;
-  font-size:18px;
-  border:none;
-  border-radius:24px;
-  cursor:pointer;
+    padding:10px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
 }
 
-#yes{
-  background:#ff4d6d;
-  color:white;
+#flores {
+    display: none;
+    margin-top: 30px;
 }
 
-#no{
-  background:#b9b9b9;
+.flor {
+    font-size: 55px;
+    cursor: pointer;
+    margin: 15px;
+    display: inline-block;
+    transition: transform 0.2s;
 }
 
-button:hover{
-  filter:brightness(.95);
+.flor:hover {
+    transform: scale(1.3);
 }
 
-/* Corazones */
+/* ===== CORAZONES BONITOS ===== */
+
 .petal{
   position:absolute;
   top:-10vh;
   font-size:90px;
-  animation: fall linear infinite;
+  animation: fall linear forwards;
   pointer-events:none;
 }
 
@@ -89,35 +75,35 @@ button:hover{
   }
 }
 
-.hidden{
-  display:none;
-}
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <h2>&iquest;Quieres ser mi San Valentin?</h2>
+<h1>💐 Sorpresa 💐</h1>
+<p id="texto">Toca el botón 💖</p>
 
-  <div class="buttons">
-    <button id="yes" onclick="yes()">Si</button>
-    <button id="no" onclick="nope()">No</button>
-  </div>
+<button onclick="mostrar()">Abrir</button>
+
+<div id="flores">
+    <div class="flor" onclick="alert('TU 🫵 ERES MIA!!!!!!🔥 ')">🌸</div>
+    <div class="flor" onclick="alert('Me encantas ✨')">🌷</div>
+    <div class="flor" onclick="alert('Me gusta besar tu cuerpo 🫣🤤🔥🔥💖')">🌹</div>
+    <div class="flor" onclick="alert('Te quiero 💗')">🌼</div>
+    <div class="flor" onclick="alert('Eres mi persona favorita 💘')">🌺</div>
 </div>
 
 <script>
-function nope(){
-  document.getElementById("no").classList.add("hidden");
-  document.querySelector("h2").innerHTML="Ya sabia que dirias que si";
-}
 
-function yes(){
-  document.getElementById("card").remove();
+function mostrar() {
+    document.getElementById("flores").style.display = "block";
+    document.getElementById("texto").innerText =
+        "Ahora toca las flores 🌸";
 
-  for(let i=0;i<140;i++){
-    setTimeout(spawn, i*25);
-  }
+    // Lanza muchos corazones como el primer código
+    for(let i=0;i<140;i++){
+        setTimeout(spawn, i*25);
+    }
 }
 
 function spawn(){
@@ -139,6 +125,7 @@ function spawn(){
   document.body.appendChild(e);
   setTimeout(()=>e.remove(),10000);
 }
+
 </script>
 
 </body>
